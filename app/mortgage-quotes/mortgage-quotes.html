@@ -1,0 +1,44 @@
+<div>
+    <div class="header">
+        Enter loan amount: <input type="number" class="form-control" ng-model="quotesCtrl.loanAmount"/>
+        <button class="btn btn-primary" type="submit" ng-click="quotesCtrl.loadQuotes()">Submit</button>
+    </div>
+
+    <div class="filters-panel">
+        <div ng-show="col.filterOptions" ng-repeat="col in quotesCtrl.columns">
+            <div><strong>{{col.displayName}}</strong></div>
+            <div ng-repeat="option in col.filterOptions">
+                <input type="checkbox" ng-model="checked" ng-change="quotesCtrl.setFilter(col.fieldName, option, checked)" /> {{option}}
+            </div>
+        </div>
+    </div>
+
+    <div class="state-copy" ng-show="quotesCtrl.quotes.length === 0">
+        {{quotesCtrl.state}}
+    </div>
+
+    <div class="quotes-table" ng-hide="quotesCtrl.quotes.length === 0">
+        <table class="table table-bordered table-striped">
+
+            <thead>
+                <tr>
+                    <td ng-repeat="col in quotesCtrl.columns">
+                        <span class="table-header" ng-click="quotesCtrl.sortType = col.fieldName; quotesCtrl.sortReverse = !quotesCtrl.sortReverse">
+                            {{col.displayName}}
+                            <span ng-show="quotesCtrl.sortType === col.fieldName">{{quotesCtrl.sortReverse ? '&#x25B2;' : '&#x25BC;' }}</span>
+                        </span>
+                    </td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr ng-repeat="quote in quotesCtrl.quotes | orderBy: quotesCtrl.sortType : quotesCtrl.sortReverse" ng-show="quotesCtrl.matchesFilters(quote)">
+                    <td ng-repeat="col in quotesCtrl.columns">
+                        {{ quote[col.fieldName] }}
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>

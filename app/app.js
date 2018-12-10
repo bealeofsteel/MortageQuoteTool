@@ -1,14 +1,16 @@
 'use strict';
 
-// Declare app level module which depends on views, and core components
-angular.module('myApp', [
+angular.module('mortgageQuotesApp', [
   'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version'
 ]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
+config(['$routeProvider', function($routeProvider) {
 
-  $routeProvider.otherwise({redirectTo: '/view1'});
+  $routeProvider
+    .when('/', {
+        templateUrl: 'mortgage-quotes/mortgage-quotes.html',
+        controller: 'MortgageQuotesCtrl',
+        controllerAs: 'quotesCtrl'
+    });
+
+  $routeProvider.otherwise({redirectTo: '/'});
 }]);

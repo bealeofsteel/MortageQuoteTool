@@ -1,25 +1,32 @@
 /* app css stylesheet */
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+.header, .state-copy {
+    text-align: center;
 }
 
-.menu:before {
-  content: "[";
+.header, .filters-panel, .state-copy, .quotes-table {
+    padding-top: 20px;
 }
 
-.menu:after {
-  content: "]";
+.header > input {
+    display: inline-block;
+    width: 150px;
+    margin-left: 10px;
 }
 
-.menu > li {
-  display: inline;
+.header > .btn {
+    vertical-align: initial;
 }
 
-.menu > li + li:before {
-  content: "|";
-  padding-right: 0.3em;
+.filters-panel {
+    display: flex;
+    justify-content: space-around;
+}
+
+.table-header {
+    cursor: pointer;
+}
+
+td {
+    width: 20%;
 }
